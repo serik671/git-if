@@ -1,2 +1,2 @@
-Some text for github!
+Some text for GitHub!
 some
