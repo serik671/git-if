@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package javaiview;
+import java.io.File;
 import java.io.FileInputStream;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.StageStyle;
@@ -22,9 +24,12 @@ public class JavaIView extends Application{
     private boolean isStart = false;
     public static final int width = 1920, height = 1080;
     Scene scene;
-    Pane root;
+    public static Pane root;
     StarSpace ss;
-    UpPane up;
+    public static UpPane up;
+    public static RightPane right;
+    public static Image img;
+    public static ImageView image;
     
     @Override public void start(Stage stage){        
         
@@ -37,13 +42,13 @@ public class JavaIView extends Application{
         
          up = new UpPane(stage,width);
 
-        scene.setOnMouseClicked(event->{
+        /*scene.setOnMouseClicked(event->{
                if(!isStart){
                 root.getChildren().remove(up);
                 root.getChildren().add(ss);
                 isStart = true;
                }
-        });
+        });*/
         scene.setOnKeyPressed(event-> {
             if(event.getCode() == KeyCode.ESCAPE && isStart){
                 ss.setStop();
@@ -53,7 +58,24 @@ public class JavaIView extends Application{
             }
         });
         
-        root.getChildren().add(up);
+        //image = new ImageView(img);
+        
+        right = new RightPane();
+        right.pane1.button1.setOnAction(event->{            
+            File file = right.pane1.fc.showOpenDialog(stage);
+            right.loadImg(file.getPath());
+            right.pane1.textfield1.setText(file.getPath());
+        });
+        right.list.getSelectionModel().selectedItemProperty().addListener(
+                (old_val, val, new_val)->{
+                    root.getChildren().remove(image);
+                    image = new ImageView(new_val.getImage());
+                    Controller.SetImageView(image);
+                    root.getChildren().add(image);                    
+                }
+        );
+        
+        root.getChildren().addAll(up,right);
         
         stage.setScene(scene);
         stage.setMaximized(true);        
@@ -67,11 +89,19 @@ public class JavaIView extends Application{
         }
         stage.setTitle("JavaIView");
         if(stage.isAlwaysOnTop())stage.setTitle(stage.getTitle()+"(AlwaysOnTop)");
-        stage.show();
+        stage.show();        
         }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
+        GetImage(args);
         Application.launch(args);
+        
     }
     
+    public static void GetImage(String [] args){
+        try{
+            img = new Image(new FileInputStream(args[0]));
+        }catch (Exception ex){}
+        System.out.println(args.length);
+    }
 }

@@ -19,7 +19,7 @@ public class UpPane extends Pane{
         close = new Button();        
         
         min.getStyleClass().add("minB");
-        close.getStyleClass().add("closeB");
+        close.getStyleClass().add("closeB");        
         
         HBox box = new HBox();
         box.getChildren().addAll(min,close); 
@@ -30,6 +30,7 @@ public class UpPane extends Pane{
         
         pane.setAlignment(Pos.CENTER_RIGHT);
         
+        setMinHeight(31);
                 
         min.setOnMouseClicked(event-> stage.setIconified(true));
         close.setOnMouseClicked(event-> System.exit(0));

@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 .root{
-    -fx-background-color:linear-gradient(to top,#330033, #100010);
+    -fx-background-color:linear-gradient(to top,#100010,#020035);
 }
 .star{
     -fx-stroke-dash-array:10;
@@ -19,14 +19,16 @@ and open the template in the editor.
 }
 
 .closeB{
+    -fx-background-radius:0;
     -fx-background-color: transparent;
-    -fx-graphic:url("Close.png");    
+    -fx-graphic:url("Close.png");  
 }
 .closeB:hover{
     -fx-background-color: #d2385e;    
 }
 
 .minB{
+    -fx-background-radius:10;
     -fx-background-color: transparent;
     -fx-graphic:url(Min.png);
 }
@@ -34,5 +36,33 @@ and open the template in the editor.
     -fx-background-color: #404166;    
 }
 .upPane{
-    -fx-background-color: linear-gradient(to right, #030b76, #02074a);    
+    -fx-background-color: linear-gradient(to right, #020035,#33ccff);
+}
+
+.list{
+    -fx-background-color: rgba(0,0,10,0.5);    
+}
+
+.anyB{
+    -fx-background-color: #0099ff;
+    -fx-text-fill: white;    
+}
+.anyB:hover{
+    -fx-border-color:white;
+    -fx-border-width:3;
+    -fx-font-weight:bold;
+}
+.paneChooser{
+    -fx-background-color: rgba(0,0,10,0.5);    
+}
+.labelC{
+    -fx-font-size:18pt;
+    
+    -fx-text-fill: linear-gradient(to right, white, #0099ff);
+}
+.textField{
+        -fx-background-color:transparent;
+        -fx-text-fill:white;
+        -fx-border-color:white;
+        -fx-border-width:3;
 }
