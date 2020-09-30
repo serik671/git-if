@@ -1,0 +1,55 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 сент. 2020 г., 20:34:35
+    Author     : serik
+*/
+.circle{
+    -fx-translate-x: 290;
+    -fx-translate-y: 290;
+    -fx-fill: linear-gradient(to left top,#ff7f50, #6633ff); 
+    -fx-fill:#6633ff;
+    -fx-opacity:1;
+}
+.circle1{
+    -fx-translate-x: 290;
+    -fx-translate-y: 290;
+    -fx-fill:linear-gradient(to left bottom,#ff7f50,#6633ff);
+}
+.label_err{
+    -fx-font-size:50pt;
+    -fx-translate-x:0;
+    -fx-translate-y:200;
+    -fx-text-fill:red;
+    -fx-opacity:0;
+}
+.main_root{
+    -fx-background-color:transparent;
+}
+.main_up{
+    -fx-background-color: #361c36;
+    -fx-opacity:0.5;
+    -fx-background-color: linear-gradient(to left,#ff7f50, #66ff66);
+}
+.main_up:hover{
+    -fx-opacity:1;
+}
+.BMin{
+    -fx-background-radius:0;
+    -fx-background-color:transparent;
+    -fx-graphic:url("Min.png");
+}
+.BMin:hover{
+    -fx-background-color:#9f7a2d;    
+}
+.BClose{
+    -fx-background-radius:0;
+    -fx-background-color:transparent;
+    -fx-graphic:url("Close.png");
+}
+.BClose:hover{
+    -fx-background-color:#cc0000;   
+}
