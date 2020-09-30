@@ -16,11 +16,11 @@ public class RightPane extends Pane{
                 width = JavaIView.width-x,
                 height = JavaIView.height-y;
     private VBox vb;
-    public ListView<ImageView> list;
+    public ListView<PanePreView> list;
     public PaneChooser pane1;
     private String pattern = ".*(jpg|png|gif|jpeg)";
     public RightPane(){        
-        list = new ListView();
+        list = new <PanePreView>ListView();
         pane1 = new PaneChooser(width,100);
         vb = new VBox(pane1,list);
         list.setTranslateY(10);
@@ -45,25 +45,23 @@ public class RightPane extends Pane{
         ImageView img;
         JavaIView.root.getChildren().remove(JavaIView.image);
         if(file.isDirectory()){
-            ObservableList<ImageView> list = FXCollections.observableArrayList();
+            ObservableList<PanePreView> list = FXCollections.observableArrayList();
             
             for(File o : file.listFiles()){
                 if (o.getName().matches(pattern)){
                 image = new Image(o.toURI().toString());   
-                img = new ImageView(image);
-                img.setFitWidth(100);
-                img.setFitHeight(100);                
-                list.add(img);
+                PanePreView preView = new PanePreView(image,o.getName());
+                list.add(preView);
                 System.out.println(o.getName());
                 }
-                this.list.setItems(list); 
+                this.list.setItems(list);               
             }        
         }else if (file.isFile()){
             if (file.getName().matches(pattern)){
                 image = new Image(file.toURI().toString());   
                 img = new ImageView(image);                
                 Controller.SetImageView(img);
-                JavaIView.image = img;
+                JavaIView.image = img;                
                 String [] path = file.getPath().split("/");
                 String fpath = "/";
                 for(int i=0; i<path.length-1; i++){
@@ -73,6 +71,9 @@ public class RightPane extends Pane{
                 JavaIView.root.getChildren().add(JavaIView.image);
                 System.out.println(file.getName()+" | "+fpath);
             }
+        }else{
+            pane1.textfield1.setText("NOT FILE");
+            list.getItems().clear();
         }
     }
     

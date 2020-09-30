@@ -1,6 +1,5 @@
 package javaiview;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,6 +23,7 @@ public class PaneChooser extends Pane{
         fc= new FileChooser();
         fc.setTitle("Open image");
         fc.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Image",new String []{"*.png","*.jpg","*.jpeg","*.gif"}),
                 new FileChooser.ExtensionFilter("PNG", "*.png"),
                 new FileChooser.ExtensionFilter("JPEG", "*.jpeg"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),

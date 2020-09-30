@@ -61,25 +61,28 @@ public class JavaIView extends Application{
         //image = new ImageView(img);
         
         right = new RightPane();
-        right.pane1.button1.setOnAction(event->{            
+        right.pane1.button1.setOnAction(event->{
+            try{
             File file = right.pane1.fc.showOpenDialog(stage);
             right.loadImg(file.getPath());
             right.pane1.textfield1.setText(file.getPath());
+            }catch (Exception ex){System.err.println("Not file");}
         });
         right.list.getSelectionModel().selectedItemProperty().addListener(
                 (old_val, val, new_val)->{
                     root.getChildren().remove(image);
-                    image = new ImageView(new_val.getImage());
-                    Controller.SetImageView(image);
-                    root.getChildren().add(image);                    
+                    try{
+                        image = new ImageView(new_val.getImage());
+                        Controller.SetImageView(image);
+                        root.getChildren().add(image); 
+                    }catch (Exception ex){System.err.println("Not Image");}
                 }
         );
         
         root.getChildren().addAll(up,right);
         
         stage.setScene(scene);
-        stage.setMaximized(true);        
-        //stage.setAlwaysOnTop(true);
+        stage.setMaximized(true);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         try{

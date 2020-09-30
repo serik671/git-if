@@ -56,8 +56,7 @@ and open the template in the editor.
     -fx-background-color: rgba(0,0,10,0.5);    
 }
 .labelC{
-    -fx-font-size:18pt;
-    
+    -fx-font-size:18pt;    
     -fx-text-fill: linear-gradient(to right, white, #0099ff);
 }
 .textField{
@@ -65,4 +64,10 @@ and open the template in the editor.
         -fx-text-fill:white;
         -fx-border-color:white;
         -fx-border-width:3;
+}
+.panePre{
+    -fx-background-color:#020035;    
+}
+.panePre:hover{
+    -fx-background-color:#ffffff;
 }
