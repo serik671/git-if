@@ -16,6 +16,7 @@ public class PanePreView extends Pane {
     double width = 320, height = 100;    
     Image image;    
     ImageView filter;
+    Label text;
     public PanePreView(Image image, String name){
         this.image = image;
         try{
@@ -24,7 +25,7 @@ public class PanePreView extends Pane {
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
-        Label text = new Label();
+        text = new Label();
         text.setTranslateX(110);
         text.setText(EditText(name));
         text.setTextFill(Color.WHITE);

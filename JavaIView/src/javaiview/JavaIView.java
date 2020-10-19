@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
 
 /**
@@ -30,6 +31,7 @@ public class JavaIView extends Application{
     public static RightPane right;
     public static Image img;
     public static ImageView image;
+    public static CircLoad loading;
     
     @Override public void start(Stage stage){        
         
@@ -60,10 +62,16 @@ public class JavaIView extends Application{
         
         //image = new ImageView(img);
         
+        loading = new CircLoad();
+        loading.setTranslateX(180);
+        loading.setTranslateY(height-200);
+        loading.setStart(true);
+        root.getChildren().add(loading);        
+        
         right = new RightPane();
         right.pane1.button1.setOnAction(event->{
             try{
-            File file = right.pane1.fc.showOpenDialog(stage);
+            File file = right.pane1.fc.showOpenDialog(stage);            
             right.loadImg(file.getPath());
             right.pane1.textfield1.setText(file.getPath());
             }catch (Exception ex){System.err.println("Not file");}

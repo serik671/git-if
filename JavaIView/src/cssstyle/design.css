@@ -71,3 +71,7 @@ and open the template in the editor.
 .panePre:hover{
     -fx-background-color:#ffffff;
 }
+.circLoad{
+    -fx-stroke-dash-array:50;
+    -fx-fill:transparent;
+}

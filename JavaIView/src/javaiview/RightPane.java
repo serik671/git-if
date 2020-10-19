@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 /**
  *
  * @author serik
@@ -18,6 +19,7 @@ public class RightPane extends Pane{
     private VBox vb;
     public ListView<PanePreView> list;
     public PaneChooser pane1;
+    private File selectFile = new File("");
     private String pattern = ".*(jpg|png|gif|jpeg)";
     public RightPane(){        
         list = new <PanePreView>ListView();
@@ -41,21 +43,26 @@ public class RightPane extends Pane{
     
     public void loadImg(String str){
         File file = new File(str);
-        Image image;
-        ImageView img;
-        JavaIView.root.getChildren().remove(JavaIView.image);
+        Image image;        
+        ImageView img;        
+        JavaIView.root.getChildren().remove(JavaIView.image);        
         if(file.isDirectory()){
+            
             ObservableList<PanePreView> list = FXCollections.observableArrayList();
             
             for(File o : file.listFiles()){
                 if (o.getName().matches(pattern)){
                 image = new Image(o.toURI().toString());   
                 PanePreView preView = new PanePreView(image,o.getName());
-                list.add(preView);
+                list.add(preView);                
+                if(selectFile.getName().equals(o.getName())){
+                   /* preView.setStyle("-fx-background-color:white");
+                    preView.text.setTextFill(Color.web("#020035"));*/
+                }
                 System.out.println(o.getName());
                 }
-                this.list.setItems(list);               
-            }        
+                this.list.setItems(list);
+            }             
         }else if (file.isFile()){
             if (file.getName().matches(pattern)){
                 image = new Image(file.toURI().toString());   
@@ -67,6 +74,7 @@ public class RightPane extends Pane{
                 for(int i=0; i<path.length-1; i++){
                     fpath += path[i]+"/";
                 }
+                selectFile = file;
                 loadImg(fpath);                
                 JavaIView.root.getChildren().add(JavaIView.image);
                 System.out.println(file.getName()+" | "+fpath);
