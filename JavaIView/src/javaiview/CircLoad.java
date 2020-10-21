@@ -54,16 +54,19 @@ public class CircLoad extends Pane {
         c1 = new Circle(150);
         c1.setStroke(Color.web("#0000cc"));
         c1.setEffect(ds1);
+        c1.setStyle("-fx-stroke-dash-array:80");
         c2 = new Circle(100);
         c2.setStroke(Color.web("#0099ff"));
         c2.setEffect(ds2);
-        c2.setTranslateX(strokeWidth/2-3);
-        c2.setTranslateY(strokeWidth/2-3);
+        c2.setTranslateX(strokeWidth/2-4);
+        c2.setTranslateY(strokeWidth/2-4);
+        c2.setStyle("-fx-stroke-dash-array:45");
         c3 = new Circle(50);
         c3.setStroke(Color.web("#99ccff"));
         c3.setEffect(ds3);
-        c3.setTranslateX(strokeWidth-5);
-        c3.setTranslateY(strokeWidth-5);
+        c3.setTranslateX(strokeWidth-7);
+        c3.setTranslateY(strokeWidth-7);
+        c3.setStyle("-fx-stroke-dash-array:50");
         CastomCircle(c1,c2,c3);
         //Animation
         rt1 = new RotateTransition(Duration.millis(4500),c1);

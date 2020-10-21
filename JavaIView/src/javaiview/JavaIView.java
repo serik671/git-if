@@ -32,6 +32,7 @@ public class JavaIView extends Application{
     public static Image img;
     public static ImageView image;
     public static CircLoad loading;
+    private static PanePreView panePreViewSelect;
     
     @Override public void start(Stage stage){        
         
@@ -66,10 +67,12 @@ public class JavaIView extends Application{
         loading.setTranslateX(180);
         loading.setTranslateY(height-200);
         loading.setStart(true);
+        Controller.setLoadingGrad(true);
         root.getChildren().add(loading);        
         
         right = new RightPane();
         right.pane1.button1.setOnAction(event->{
+            Controller.clearSelect();
             try{
             File file = right.pane1.fc.showOpenDialog(stage);            
             right.loadImg(file.getPath());
@@ -77,7 +80,11 @@ public class JavaIView extends Application{
             }catch (Exception ex){System.err.println("Not file");}
         });
         right.list.getSelectionModel().selectedItemProperty().addListener(
-                (old_val, val, new_val)->{
+                (old_val, val, new_val)->{                   
+                    //if(new_val!=null)JavaIView.right.pane1.textfield1.setText(new_val.);
+                    if(getPreViewSelect()!=null && new_val!=null)getPreViewSelect().setSelect(false);
+                    if(new_val!=null)setPreViewSelect(new_val);
+                    if(getPreViewSelect()!=null)getPreViewSelect().setSelect(true);
                     root.getChildren().remove(image);
                     try{
                         image = new ImageView(new_val.getImage());
@@ -114,5 +121,11 @@ public class JavaIView extends Application{
             img = new Image(new FileInputStream(args[0]));
         }catch (Exception ex){}
         System.out.println(args.length);
+    }
+    public static void setPreViewSelect(PanePreView preView){
+        panePreViewSelect = preView;
+    }
+    public static PanePreView getPreViewSelect(){
+        return panePreViewSelect;
     }
 }

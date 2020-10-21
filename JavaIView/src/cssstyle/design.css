@@ -40,7 +40,10 @@ and open the template in the editor.
 }
 
 .list{
-    -fx-background-color: rgba(0,0,10,0.5);    
+    -fx-background-color: rgba(0,0,10,0.5);
+    -fx-control-inner-background: transparent;
+    -fx-control-inner-background-alt: transparent;
+    -fx-selection-bar: transparent;
 }
 
 .anyB{
@@ -69,9 +72,12 @@ and open the template in the editor.
     -fx-background-color:#020035;    
 }
 .panePre:hover{
-    -fx-background-color:#ffffff;
+    -fx-background-color: linear-gradient(to left bottom, #0099ff,#020035);
 }
-.circLoad{
-    -fx-stroke-dash-array:50;
+.panePreSelect{
+    -fx-background-color: linear-gradient(to left bottom, #33ccff, #020035);
+}
+
+.circLoad{    
     -fx-fill:transparent;
 }

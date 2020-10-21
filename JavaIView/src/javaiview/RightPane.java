@@ -36,6 +36,7 @@ public class RightPane extends Pane{
             
         });
         pane1.textfield1.setOnAction(event->{
+            Controller.clearSelect();
             loadImg(pane1.textfield1.getText());
         });
         getChildren().add(vb);        
@@ -44,8 +45,7 @@ public class RightPane extends Pane{
     public void loadImg(String str){
         File file = new File(str);
         Image image;        
-        ImageView img;        
-        JavaIView.root.getChildren().remove(JavaIView.image);        
+        ImageView img;               
         if(file.isDirectory()){
             
             ObservableList<PanePreView> list = FXCollections.observableArrayList();
@@ -54,15 +54,18 @@ public class RightPane extends Pane{
                 if (o.getName().matches(pattern)){
                 image = new Image(o.toURI().toString());   
                 PanePreView preView = new PanePreView(image,o.getName());
-                list.add(preView);                
-                if(selectFile.getName().equals(o.getName())){
-                   /* preView.setStyle("-fx-background-color:white");
-                    preView.text.setTextFill(Color.web("#020035"));*/
+                list.add(preView);
+                if(getSelectFile()!=null)
+                if(getSelectFile().getName().equals(o.getName())){
+                    list.remove(preView);
+                    list.add(0,preView);  
+                    JavaIView.setPreViewSelect(preView);
+                    JavaIView.getPreViewSelect().setSelect(true);
                 }
-                System.out.println(o.getName());
-                }
-                this.list.setItems(list);
-            }             
+                System.out.println(o.getName());                
+                }                
+            }
+            this.list.setItems(list);  
         }else if (file.isFile()){
             if (file.getName().matches(pattern)){
                 image = new Image(file.toURI().toString());   
@@ -74,7 +77,7 @@ public class RightPane extends Pane{
                 for(int i=0; i<path.length-1; i++){
                     fpath += path[i]+"/";
                 }
-                selectFile = file;
+                setSelectFile(file);
                 loadImg(fpath);                
                 JavaIView.root.getChildren().add(JavaIView.image);
                 System.out.println(file.getName()+" | "+fpath);
@@ -82,7 +85,14 @@ public class RightPane extends Pane{
         }else{
             pane1.textfield1.setText("NOT FILE");
             list.getItems().clear();
-        }
+        }        
+    }
+    
+    public void setSelectFile(File file){
+        selectFile = file;
+    }
+    public File getSelectFile(){
+        return selectFile;
     }
     
 }

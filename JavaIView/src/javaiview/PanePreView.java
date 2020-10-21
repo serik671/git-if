@@ -34,8 +34,8 @@ public class PanePreView extends Pane {
         getChildren().addAll(filter,imageView, text);
         getStyleClass().add("panePre");
 
-        setOnMouseEntered(event-> text.setTextFill(Color.web("#020035")));
-        setOnMouseExited(event-> text.setTextFill(Color.WHITE));
+        /*setOnMouseEntered(event-> text.setTextFill(Color.web("#020035")));
+        setOnMouseExited(event-> text.setTextFill(Color.WHITE));*/
         
     }
     public Image getImage(){
@@ -52,5 +52,10 @@ public class PanePreView extends Pane {
         }
         return text;
     }
-    
+    public void setSelect(boolean f){
+        getStyleClass().clear();
+        if(f) getStyleClass().add("panePreSelect");
+        else getStyleClass().add("panePre");
+        
+    }
 }
