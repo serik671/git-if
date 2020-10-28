@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
  * @author serik
  */
 public class RightPane extends Pane{
-    private int x=1600,y=30,
+    private int x=1600-40,y=30,
                 width = JavaIView.width-x,
                 height = JavaIView.height-y;
     private VBox vb;
@@ -53,7 +53,7 @@ public class RightPane extends Pane{
             for(File o : file.listFiles()){
                 if (o.getName().matches(pattern)){
                 image = new Image(o.toURI().toString());   
-                PanePreView preView = new PanePreView(image,o.getName());
+                PanePreView preView = new PanePreView(image,o.getName(),o);
                 list.add(preView);
                 if(getSelectFile()!=null)
                 if(getSelectFile().getName().equals(o.getName())){
@@ -61,6 +61,8 @@ public class RightPane extends Pane{
                     list.add(0,preView);  
                     JavaIView.setPreViewSelect(preView);
                     JavaIView.getPreViewSelect().setSelect(true);
+                    JavaIView.left.setLabelSize(preView);
+                    JavaIView.left.setLabelWeight(preView);
                 }
                 System.out.println(o.getName());                
                 }                
@@ -68,7 +70,7 @@ public class RightPane extends Pane{
             this.list.setItems(list);  
         }else if (file.isFile()){
             if (file.getName().matches(pattern)){
-                image = new Image(file.toURI().toString());   
+                image = new Image(file.toURI().toString());                
                 img = new ImageView(image);                
                 Controller.SetImageView(img);
                 JavaIView.image = img;                

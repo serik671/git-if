@@ -32,6 +32,7 @@ public class PaneChooser extends Pane{
         button1 = new Button("Open");
         button1.getStyleClass().add("anyB");        
         textfield1 = new TextField();
+        textfield1.setMinWidth(215);
         textfield1.getStyleClass().add("textField");
         label1 = new Label("File: ");
         label1.getStyleClass().add("labelC");

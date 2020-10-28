@@ -15,6 +15,7 @@ public class Controller {
     private static double width = JavaIView.width, height = JavaIView.height;
     private static double x = width/2, y = height/2, k;
     private static int n=0;
+    private static CircLoad circLoading = LeftPane.loading;
     private static Timeline loading = new Timeline(new KeyFrame(Duration.millis(500),e->loading()));
     public static void SetImageView(ImageView img){        
         if(img.getImage().getWidth()>900){
@@ -40,17 +41,17 @@ public class Controller {
         JavaIView.root.getChildren().remove(JavaIView.image);
     }
     private static void loading(){
-        JavaIView.loading.c1.setStroke(Color.web("#0000cc"));
-        JavaIView.loading.c2.setStroke(Color.web("#0099ff"));
-        JavaIView.loading.c3.setStroke(Color.web("#99ccff"));
+        circLoading.c1.setStroke(Color.web("#0000cc"));
+        circLoading.c2.setStroke(Color.web("#0099ff"));
+        circLoading.c3.setStroke(Color.web("#99ccff"));
         switch (n){
             case 0 : break;
-            case 1 : JavaIView.loading.c3.setStroke(Color.web("#020035"));break;
-            case 2 : JavaIView.loading.c2.setStroke(Color.web("#020035"));JavaIView.loading.c3.setStroke(Color.web("#020035"));break;            
+            case 1 : circLoading.c3.setStroke(Color.web("#020035"));break;
+            case 2 : circLoading.c2.setStroke(Color.web("#020035"));circLoading.c3.setStroke(Color.web("#020035"));break;            
             default : {
-                JavaIView.loading.c1.setStroke(Color.web("#020035"));
-                JavaIView.loading.c2.setStroke(Color.web("#020035"));
-                JavaIView.loading.c3.setStroke(Color.web("#020035"));
+                circLoading.c1.setStroke(Color.web("#020035"));
+                circLoading.c2.setStroke(Color.web("#020035"));
+                circLoading.c3.setStroke(Color.web("#020035"));
             }
         }
         if(n<3)

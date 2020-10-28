@@ -29,9 +29,9 @@ public class JavaIView extends Application{
     StarSpace ss;
     public static UpPane up;
     public static RightPane right;
+    public static LeftPane left;
     public static Image img;
     public static ImageView image;
-    public static CircLoad loading;
     private static PanePreView panePreViewSelect;
     
     @Override public void start(Stage stage){        
@@ -63,12 +63,8 @@ public class JavaIView extends Application{
         
         //image = new ImageView(img);
         
-        loading = new CircLoad();
-        loading.setTranslateX(180);
-        loading.setTranslateY(height-200);
-        loading.setStart(true);
-        Controller.setLoadingGrad(true);
-        root.getChildren().add(loading);        
+        left = new LeftPane();
+        left.getStyleClass().add("paneChooser");
         
         right = new RightPane();
         right.pane1.button1.setOnAction(event->{
@@ -84,7 +80,12 @@ public class JavaIView extends Application{
                     //if(new_val!=null)JavaIView.right.pane1.textfield1.setText(new_val.);
                     if(getPreViewSelect()!=null && new_val!=null)getPreViewSelect().setSelect(false);
                     if(new_val!=null)setPreViewSelect(new_val);
-                    if(getPreViewSelect()!=null)getPreViewSelect().setSelect(true);
+                    if(getPreViewSelect()!=null){
+                        getPreViewSelect().setSelect(true);
+                        //left.lSize.setText("Size: "+getPreViewSelect().getImage().getWidth()+"x"+getPreViewSelect().getImage().getHeight());
+                        left.setLabelSize(getPreViewSelect());
+                        left.setLabelWeight(getPreViewSelect());
+                    }else left.LabelsClear();
                     root.getChildren().remove(image);
                     try{
                         image = new ImageView(new_val.getImage());
@@ -94,7 +95,7 @@ public class JavaIView extends Application{
                 }
         );
         
-        root.getChildren().addAll(up,right);
+        root.getChildren().addAll(up,right,left);
         
         stage.setScene(scene);
         stage.setMaximized(true);
@@ -123,7 +124,7 @@ public class JavaIView extends Application{
         System.out.println(args.length);
     }
     public static void setPreViewSelect(PanePreView preView){
-        panePreViewSelect = preView;
+        panePreViewSelect = preView;        
     }
     public static PanePreView getPreViewSelect(){
         return panePreViewSelect;

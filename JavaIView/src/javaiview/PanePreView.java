@@ -1,5 +1,6 @@
 package javaiview;
 
+import java.io.File;
 import java.io.FileInputStream;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,11 +15,13 @@ import javafx.scene.paint.Color;
 public class PanePreView extends Pane {
     
     double width = 320, height = 100;    
-    Image image;    
+    private Image image;
+    private File file;
     ImageView filter;
     Label text;
-    public PanePreView(Image image, String name){
+    public PanePreView(Image image, String name, File file){
         this.image = image;
+        this.file = file;
         try{
             filter = new ImageView(new Image(new FileInputStream("Filter.png")));
         }catch (Exception ex){}
@@ -38,8 +41,21 @@ public class PanePreView extends Pane {
         setOnMouseExited(event-> text.setTextFill(Color.WHITE));*/
         
     }
+    public void setImage(Image img){
+        image = img;
+    }
     public Image getImage(){
         return image;
+    }
+    public void setFile(File file){
+        this.file = file;
+    }
+    public File getFile(){
+        return file;
+    }
+    public FileInputStream getFileInputStream()throws Exception{
+        FileInputStream file = new FileInputStream(this.file);        
+        return file;
     }
     private String EditText(String name){
         String [] A = name.split("");
