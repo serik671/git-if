@@ -13,7 +13,7 @@ import javafx.scene.shape.Line;
 
 
 public class LeftPane extends Pane {
-    private Button btnHelp, btnInfo;    
+    private Button btnHelp, btnInfo, btnViewMode, btnCopyImage, btnSleep, btnOption;    
     private Label lSize, lWeight;
     private CheckBox chBIsGrad, chBIsStart;
     private int height = JavaIView.height, width = 350;
@@ -41,6 +41,24 @@ public class LeftPane extends Pane {
         hbInfo.setMinWidth(width);
         hbInfo.setAlignment(Pos.CENTER);
         CustomButtons(btnInfo,btnHelp);
+        //Buttons Controls
+        btnViewMode = new Button("Режим просмотра");
+        btnViewMode.setDisable(true);
+        btnViewMode.setMinSize(width-20, 50);
+        btnCopyImage = new Button("Копировать изображение");
+        btnCopyImage.setDisable(true);
+        btnCopyImage.setMinSize(width-20,50);
+        btnSleep = new Button("Спящий режим");
+        btnOption = new Button("Настройки");
+        btnSleep.setMinSize(width-20,50);
+        btnOption.setMinSize(width-20,50);
+        btnSleep.setOnAction(event-> Controller.ClearRoot());
+        VBox vbControl = new VBox(btnViewMode,btnCopyImage,btnSleep,btnOption);
+        vbControl.setTranslateY(100);
+        vbControl.setTranslateX(10);
+        vbControl.setAlignment(Pos.CENTER);
+        vbControl.setSpacing(50);
+        CustomButtons(btnViewMode,btnCopyImage,btnSleep,btnOption);
         //Line
         Line linGran = new Line(0,height-1.8*gran,width,height-1.8*gran);
         linGran.getStyleClass().add("lineLeft");
@@ -56,7 +74,7 @@ public class LeftPane extends Pane {
         lWeight.setStyle("-fx-text-fill:linear-gradient(to right,white,#0099ff);-fx-font-size:16");
         
         
-        getChildren().addAll(loading,hbInfo,linGran,linGran1,lSize,lWeight);
+        getChildren().addAll(loading,hbInfo,linGran,linGran1,lSize,lWeight,vbControl);
     }
     
     private static void CustomButtons(Button ... btn){
@@ -83,5 +101,12 @@ public class LeftPane extends Pane {
     public void LabelsClear(){
         lSize.setText("Size:");
         lWeight.setText("Weight:");
+    }
+    public void setEnableButtons(boolean f){
+        btnViewMode.setDisable(!f);
+        btnCopyImage.setDisable(!f);
+    }
+    public boolean isEnableButtons(){
+        return !btnViewMode.isDisable();
     }
 }

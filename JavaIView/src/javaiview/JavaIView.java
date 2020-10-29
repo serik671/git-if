@@ -13,8 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.collections.FXCollections;
 
 /**
  *
@@ -22,46 +24,35 @@ import javafx.stage.StageStyle;
  */
 public class JavaIView extends Application{
 
-    private boolean isStart = false;
+    private static boolean isStart = false;
     public static final int width = 1920, height = 1080;
+    public static String title = "JavaIView";
     Scene scene;
     public static Pane root;
-    StarSpace ss;
+    public static StarSpace ss;
     public static UpPane up;
     public static RightPane right;
     public static LeftPane left;
     public static Image img;
     public static ImageView image;
     private static PanePreView panePreViewSelect;
+    public static ObservableList<Node> Nods;
     
     @Override public void start(Stage stage){        
         
         root =  new Pane();
         scene = new Scene(root,width,height);
-        scene.getStylesheets().add("cssstyle/design.css");
-                
+        scene.getStylesheets().add("cssstyle/design.css");        
+        Nods = FXCollections.observableArrayList();
+        ss = new StarSpace(width, height, 400);
         
-         ss = new StarSpace(width, height, 400);
-        
-         up = new UpPane(stage,width);
+        up = new UpPane(stage,width);
 
-        /*scene.setOnMouseClicked(event->{
-               if(!isStart){
-                root.getChildren().remove(up);
-                root.getChildren().add(ss);
-                isStart = true;
-               }
-        });*/
-        scene.setOnKeyPressed(event-> {
-            if(event.getCode() == KeyCode.ESCAPE && isStart){
-                ss.setStop();
-                root.getChildren().remove(ss);
-                root.getChildren().add(up);
-                isStart = false;
-            }
-        });
         
-        //image = new ImageView(img);
+        scene.setOnKeyPressed(event->{
+            if((event.getCode() == KeyCode.ESCAPE) && isStart())Controller.ReturnRoot();
+        });
+
         
         left = new LeftPane();
         left.getStyleClass().add("paneChooser");
@@ -76,13 +67,12 @@ public class JavaIView extends Application{
             }catch (Exception ex){System.err.println("Not file");}
         });
         right.list.getSelectionModel().selectedItemProperty().addListener(
-                (old_val, val, new_val)->{                   
-                    //if(new_val!=null)JavaIView.right.pane1.textfield1.setText(new_val.);
+                (old_val, val, new_val)->{                                       
                     if(getPreViewSelect()!=null && new_val!=null)getPreViewSelect().setSelect(false);
                     if(new_val!=null)setPreViewSelect(new_val);
                     if(getPreViewSelect()!=null){
                         getPreViewSelect().setSelect(true);
-                        //left.lSize.setText("Size: "+getPreViewSelect().getImage().getWidth()+"x"+getPreViewSelect().getImage().getHeight());
+                        if(!left.isEnableButtons())left.setEnableButtons(true);
                         left.setLabelSize(getPreViewSelect());
                         left.setLabelWeight(getPreViewSelect());
                     }else left.LabelsClear();
@@ -106,7 +96,7 @@ public class JavaIView extends Application{
         }catch(Exception e){
             System.out.println("Not image");
         }
-        stage.setTitle("JavaIView");
+        stage.setTitle(title);
         if(stage.isAlwaysOnTop())stage.setTitle(stage.getTitle()+"(AlwaysOnTop)");
         stage.show();        
         }
@@ -128,5 +118,11 @@ public class JavaIView extends Application{
     }
     public static PanePreView getPreViewSelect(){
         return panePreViewSelect;
+    }
+    public static boolean isStart(){
+        return isStart;
+    }
+    public static void setStart(boolean f){
+        isStart = f;        
     }
 }

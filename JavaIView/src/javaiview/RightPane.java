@@ -45,7 +45,8 @@ public class RightPane extends Pane{
     public void loadImg(String str){
         File file = new File(str);
         Image image;        
-        ImageView img;               
+        ImageView img;
+        JavaIView.left.setEnableButtons(false);
         if(file.isDirectory()){
             
             ObservableList<PanePreView> list = FXCollections.observableArrayList();
@@ -82,6 +83,7 @@ public class RightPane extends Pane{
                 setSelectFile(file);
                 loadImg(fpath);                
                 JavaIView.root.getChildren().add(JavaIView.image);
+                JavaIView.left.setEnableButtons(true);
                 System.out.println(file.getName()+" | "+fpath);
             }
         }else{

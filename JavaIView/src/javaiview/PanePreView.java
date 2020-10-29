@@ -61,7 +61,7 @@ public class PanePreView extends Pane {
         String [] A = name.split("");
         String text = "";
         for (int i=0; i<A.length;i++){
-            if(i%20==0){
+            if(i%25==0){
                 text+="\n";
             }
             text+=A[i];

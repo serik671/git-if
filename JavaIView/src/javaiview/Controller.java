@@ -1,8 +1,10 @@
 package javaiview;
 
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -17,6 +19,10 @@ public class Controller {
     private static int n=0;
     private static CircLoad circLoading = LeftPane.loading;
     private static Timeline loading = new Timeline(new KeyFrame(Duration.millis(500),e->loading()));
+    private static TranslateTransition ttLeft ;
+    private static TranslateTransition ttRight ;
+    private static TranslateTransition ttUp ;
+    private static FadeTransition ftImage;
     public static void SetImageView(ImageView img){        
         if(img.getImage().getWidth()>900){
             k = img.getImage().getWidth()/img.getImage().getHeight();
@@ -64,5 +70,48 @@ public class Controller {
         loading.play();
         }
         else loading.stop();
+    }
+    public static void ClearRoot(){
+        JavaIView.Nods.clear();
+        JavaIView.Nods.addAll(JavaIView.root.getChildren());
+        ttLeft = new TranslateTransition(Duration.millis(500), JavaIView.left);
+        ttRight = new TranslateTransition(Duration.millis(500), JavaIView.right);
+        ttUp = new TranslateTransition(Duration.millis(500), JavaIView.up);
+        if(JavaIView.image != null){
+            ftImage = new FadeTransition(Duration.millis(500),JavaIView.image);
+            ftImage.setToValue(0);
+            ftImage.play();
+        }
+        ttLeft.setToX(-JavaIView.left.getWidth());
+        ttRight.setToX(JavaIView.width);
+        ttUp.setToY(-31);
+        ttUp.play();
+        ttRight.play();
+        ttLeft.play();
+        ttLeft.setOnFinished(event->{ 
+            if(!JavaIView.isStart()){
+            JavaIView.setStart(true);
+            JavaIView.root.getChildren().clear();            
+            JavaIView.root.getChildren().add(JavaIView.ss);
+            JavaIView.ss.setStart();
+            }else {
+                JavaIView.setStart(false);
+                JavaIView.ss.setStop();
+            }
+        });
+    }
+    public static void ReturnRoot(){
+        JavaIView.root.getChildren().clear();
+        JavaIView.root.getChildren().addAll(JavaIView.Nods);
+        if(ftImage != null){
+            ftImage.setToValue(1);
+            ftImage.play();
+        }
+        ttLeft.setToX(0);
+        ttRight.setToX(JavaIView.width-JavaIView.right.getWidth());
+        ttUp.setToY(0);
+        ttUp.play();
+        ttRight.play();
+        ttLeft.play();
     }
 }

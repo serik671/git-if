@@ -30,6 +30,8 @@ public class PaneChooser extends Pane{
                 new FileChooser.ExtensionFilter("GIF", "*.gif")
         );
         button1 = new Button("Open");
+        button1.setMinSize(64,32);
+        button1.setMaxSize(64,32);
         button1.getStyleClass().add("anyB");        
         textfield1 = new TextField();
         textfield1.setMinWidth(215);
