@@ -1,12 +1,15 @@
 package javaiview;
 
 import javafx.animation.Animation;
+import javafx.animation.Animation.Status;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 /**
@@ -23,6 +26,7 @@ public class Controller {
     private static TranslateTransition ttRight ;
     private static TranslateTransition ttUp ;
     private static FadeTransition ftImage;
+    private static FadeTransition ftLabel;
     public static void SetImageView(ImageView img){        
         if(img.getImage().getWidth()>900){
             k = img.getImage().getWidth()/img.getImage().getHeight();
@@ -71,9 +75,27 @@ public class Controller {
         }
         else loading.stop();
     }
+    public static boolean isLoadingGrad(){
+        return loading.getStatus()==Status.RUNNING;
+    }
     public static void ClearRoot(){
         JavaIView.Nods.clear();
         JavaIView.Nods.addAll(JavaIView.root.getChildren());
+        Label label = new Label("Для вызода из спящего режима\n\t\tнажмите \"Esc\"");
+        label.setFont(Font.font(100));
+        label.setTranslateX(100);
+        label.setTranslateY(400);
+        label.setTextFill(Color.GAINSBORO);
+        ftLabel = new FadeTransition(Duration.millis(1000),label);
+        ftLabel.setToValue(0);
+        ftLabel.setAutoReverse(true);
+        ftLabel.setCycleCount(3);
+        ftLabel.setOnFinished(event->{
+            JavaIView.root.getChildren().remove(label);
+            JavaIView.ss.setStart();
+        });
+        ftLabel.play();
+        JavaIView.root.getChildren().add(label);
         ttLeft = new TranslateTransition(Duration.millis(500), JavaIView.left);
         ttRight = new TranslateTransition(Duration.millis(500), JavaIView.right);
         ttUp = new TranslateTransition(Duration.millis(500), JavaIView.up);
@@ -91,9 +113,9 @@ public class Controller {
         ttLeft.setOnFinished(event->{ 
             if(!JavaIView.isStart()){
             JavaIView.setStart(true);
-            JavaIView.root.getChildren().clear();            
+            JavaIView.root.getChildren().removeAll(JavaIView.Nods);            
             JavaIView.root.getChildren().add(JavaIView.ss);
-            JavaIView.ss.setStart();
+            JavaIView.ss.setStop();
             }else {
                 JavaIView.setStart(false);
                 JavaIView.ss.setStop();

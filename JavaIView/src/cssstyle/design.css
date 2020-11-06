@@ -36,7 +36,7 @@ and open the template in the editor.
     -fx-background-color: #404166;    
 }
 .upPane{
-    -fx-background-color: linear-gradient(to right, #020035,#a87cd4,#33ccff);
+    -fx-background-color: linear-gradient(to right, #020035,#990099,#a87cd4,#33ccff);
 }
 
 .list{
@@ -83,11 +83,11 @@ and open the template in the editor.
     -fx-fill:transparent;
 }
 .lineLeft{
-    -fx-stroke: linear-gradient(to right, #ff0cef,#0099ff);
+    -fx-stroke: linear-gradient(to right, #990099,#0099ff);
     -fx-stroke-width:10;
 }
 .leftBtn{    
-    -fx-background-color: radial-gradient(center 50% 50%,radius 75%,#ff0cef,#0099ff);    
+    -fx-background-color: radial-gradient(center 50% 50%,radius 75%,#990099,#0099ff);    
     -fx-background-radius:0;
     -fx-text-fill:white
 }

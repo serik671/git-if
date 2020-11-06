@@ -1,6 +1,7 @@
 package javaiview;
 
 import javafx.animation.Animation;
+import javafx.animation.Animation.Status;
 import javafx.animation.Interpolator;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -87,5 +88,10 @@ public class CircLoad extends Pane {
         if(is)
             Start(rt1,rt2,rt3);
         else Stop(rt1,rt2,rt3); 
+    }
+    public boolean isStart(){        
+        return rt1.getStatus()==Status.RUNNING||
+               rt2.getStatus()==Status.RUNNING||
+               rt3.getStatus()==Status.RUNNING;
     }
 }

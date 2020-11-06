@@ -2,6 +2,7 @@ package javaiview;
 import java.io.File;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,9 +33,6 @@ public class RightPane extends Pane{
         setHeight(height);
         setTranslateX(x);
         setTranslateY(y+1);
-        pane1.button1.setOnAction(event->{
-            
-        });
         pane1.textfield1.setOnAction(event->{
             Controller.clearSelect();
             loadImg(pane1.textfield1.getText());
@@ -51,7 +49,7 @@ public class RightPane extends Pane{
             
             ObservableList<PanePreView> list = FXCollections.observableArrayList();
             
-            for(File o : file.listFiles()){
+            for(File o : file.listFiles()){                
                 if (o.getName().matches(pattern)){
                 image = new Image(o.toURI().toString());   
                 PanePreView preView = new PanePreView(image,o.getName(),o);

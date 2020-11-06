@@ -60,10 +60,10 @@ public class JavaIView extends Application{
         right = new RightPane();
         right.pane1.button1.setOnAction(event->{
             Controller.clearSelect();
-            try{
+            try{                
             File file = right.pane1.fc.showOpenDialog(stage);            
             right.loadImg(file.getPath());
-            right.pane1.textfield1.setText(file.getPath());
+            right.pane1.textfield1.setText(file.getPath());            
             }catch (Exception ex){System.err.println("Not file");}
         });
         right.list.getSelectionModel().selectedItemProperty().addListener(

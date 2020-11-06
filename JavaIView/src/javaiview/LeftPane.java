@@ -32,8 +32,10 @@ public class LeftPane extends Pane {
         //Buttons info
         btnHelp = new Button("Помощь");
         btnHelp.setMinSize(width/2,35);
+        btnHelp.setOnAction(event->new ModalHelp());
         btnInfo = new Button("Справка");
         btnInfo.setMinSize(width/2,35);
+        btnInfo.setOnAction(event->new ModalAbout());
         HBox hbInfo = new HBox(btnInfo,btnHelp);        
         hbInfo.setSpacing(1);
         hbInfo.setTranslateY(height-2*gran);
@@ -50,6 +52,7 @@ public class LeftPane extends Pane {
         btnCopyImage.setMinSize(width-20,50);
         btnSleep = new Button("Спящий режим");
         btnOption = new Button("Настройки");
+        btnOption.setOnAction(event->new ModalOption());
         btnSleep.setMinSize(width-20,50);
         btnOption.setMinSize(width-20,50);
         btnSleep.setOnAction(event-> Controller.ClearRoot());
