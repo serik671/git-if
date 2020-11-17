@@ -17,6 +17,7 @@ public class ModalHelp extends Stage {
     public ModalHelp(){
         Pane root = new Pane();
         Label help = new Label();
+        help.getStyleClass().add("LabelText");
         help.setFont(Font.font(20));
         try{
             FileInputStream file = new FileInputStream("Help.txt");
@@ -30,7 +31,8 @@ public class ModalHelp extends Stage {
             alert.showAndWait();
         }
         root.getChildren().add(help);
-        Scene scene = new Scene(root,800,800);        
+        Scene scene = new Scene(root,800,800);
+        scene.getStylesheets().add("cssstyle/design.css");
         setScene(scene);
         initModality(Modality.APPLICATION_MODAL);
         setTitle("Help");

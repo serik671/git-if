@@ -2,6 +2,7 @@ package javaiview;
 
 import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
+import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -21,7 +23,7 @@ public class Controller {
     private static double x = width/2, y = height/2, k;
     private static int n=0;
     private static CircLoad circLoading = LeftPane.loading;
-    private static Timeline loading = new Timeline(new KeyFrame(Duration.millis(500),e->loading()));
+    private static Timeline loading = new Timeline(new KeyFrame(Duration.millis(500),e->loading()));    
     private static TranslateTransition ttLeft ;
     private static TranslateTransition ttRight ;
     private static TranslateTransition ttUp ;
@@ -136,4 +138,20 @@ public class Controller {
         ttRight.play();
         ttLeft.play();
     }
+    /*public static void DropStage(Stage stage,int tx,int ty,int height){
+        int inc=15;
+        AnimationTimer timer = new AnimationTimer(){
+            int x = 0;
+            int y = 450;
+            @Override public void handle(long now){
+                if(x<=tx)stage.setX(x+=inc);
+                if(y<=ty)stage.setY(y+=inc);
+                if(x>=tx&&y>=ty){                    
+                    if(height>stage.getHeight()) stage.setHeight(stage.getHeight()+10);
+                    else stop();
+                }
+            }
+        };
+        timer.start();        
+    }*/
 }

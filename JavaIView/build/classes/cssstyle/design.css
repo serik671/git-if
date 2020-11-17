@@ -96,3 +96,28 @@ and open the template in the editor.
     -fx-border-color:white;
     -fx-border-width:2;
 }
+
+.LabelText{
+    -fx-text-fill:white;    
+}
+
+.chBox{
+    -fx-text-fill:#33ccff;
+}
+.chBox .box{
+    -fx-background-color:#0099ff;
+    -fx-border-color:transparent;
+}
+.chBox:selected .mark{
+    -fx-background-color:white;
+}
+
+.rBut{
+    -fx-text-fill:#ff66ff;
+}
+.rBut .radio{
+    -fx-background-color:#0099ff;
+}
+.rBut:selected .dot{
+    -fx-background-color:white;    
+}

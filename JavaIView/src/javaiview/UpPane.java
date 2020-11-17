@@ -15,32 +15,53 @@ import javafx.stage.Stage;
 public class UpPane extends Pane{
         private Button min;
         private Button close;
-        private Label title;
-    public UpPane(Stage stage,double width){
+        private Label ltitle;
+        private HBox box;
+        public double x,y;
+        private double height=31;
+        private Stage stage;
+    public UpPane(Stage stage,double width, String title){
+        this.stage = stage;
         min = new Button();        
         close = new Button();        
-        title = new Label(JavaIView.title);
-        title.setTranslateX(10);
-        title.getStyleClass().add("labelC");
-        
+        ltitle = new Label(title);
+        ltitle.setTranslateX(10);
+        ltitle.getStyleClass().add("labelC");
         min.getStyleClass().add("minB");
         close.getStyleClass().add("closeB");        
         
-        HBox box = new HBox();
+        box = new HBox();
         box.getChildren().addAll(min,close); 
         
         FlowPane pane = new FlowPane(box);
         pane.setMinWidth(width);
-        pane.setMaxWidth(20);
+
         
         pane.setAlignment(Pos.CENTER_RIGHT);
         
-        setMinHeight(31);
-                
+        setMinHeight(height);    
+        
         min.setOnMouseClicked(event-> stage.setIconified(true));
-        close.setOnMouseClicked(event-> System.exit(0));
-        getChildren().addAll(pane,title);
+        close.setOnMouseClicked(event-> stage.close());
+        getChildren().addAll(pane,ltitle);
         getStyleClass().add("upPane");
     }
     
+    public void setMinimaze(boolean f){
+        box.getChildren().remove(min);
+        if(f)box.getChildren().add(min);         
+    }    
+    public double getUpHeight(){
+        return height;
+    }
+    public void setMoved(Pane root){        
+        root.setOnMousePressed(event->{
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        setOnMouseDragged(event->{
+            stage.setX(event.getScreenX()-x);
+            stage.setY(event.getScreenY()-y);
+        });
+    }
 }

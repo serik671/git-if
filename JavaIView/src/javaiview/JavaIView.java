@@ -46,7 +46,7 @@ public class JavaIView extends Application{
         Nods = FXCollections.observableArrayList();
         ss = new StarSpace(width, height, 400);
         
-        up = new UpPane(stage,width);
+        up = new UpPane(stage,width,title);
 
         
         scene.setOnKeyPressed(event->{
@@ -90,12 +90,12 @@ public class JavaIView extends Application{
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setResizable(false);
+        stage.setResizable(false);        
         try{
         stage.getIcons().add(new Image(new FileInputStream("Icon.png")));
         }catch(Exception e){
             System.out.println("Not image");
-        }
+        }        
         stage.setTitle(title);
         if(stage.isAlwaysOnTop())stage.setTitle(stage.getTitle()+"(AlwaysOnTop)");
         stage.show();        
