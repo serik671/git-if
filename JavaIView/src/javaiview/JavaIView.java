@@ -6,6 +6,7 @@
 package javaiview;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import javafx.stage.StageStyle;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.collections.FXCollections;
+import javafx.scene.ImageCursor;
 
 /**
  *
@@ -27,7 +29,7 @@ public class JavaIView extends Application{
     private static boolean isStart = false;
     public static final int width = 1920, height = 1080;
     public static String title = "JavaIView";
-    Scene scene;
+    public static Scene scene;
     public static Pane root;
     public static StarSpace ss;
     public static UpPane up;
@@ -86,30 +88,32 @@ public class JavaIView extends Application{
         );
         
         root.getChildren().addAll(up,right,left);
-        
+        try{        
+        stage.getIcons().add(new Image(new FileInputStream("Icon.png")));
+        }catch(FileNotFoundException e){
+            System.err.println("Not image:\n"+e.getMessage());
+        }  
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setResizable(false);        
-        try{
-        stage.getIcons().add(new Image(new FileInputStream("Icon.png")));
-        }catch(Exception e){
-            System.out.println("Not image");
-        }        
-        stage.setTitle(title);
+        stage.setResizable(false);
+        setCursor();
+        stage.setTitle(title);        
         if(stage.isAlwaysOnTop())stage.setTitle(stage.getTitle()+"(AlwaysOnTop)");
         stage.show();        
         }
     
     public static void main(String[] args) {        
         GetImage(args);
-        Application.launch(args);
-        
+        Application.launch(args);        
     }
     
     public static void GetImage(String [] args){
         try{
             img = new Image(new FileInputStream(args[0]));
+            image = new ImageView(img);
+            Controller.SetImageView(image);
+            root.getChildren().add(image);
         }catch (Exception ex){}
         System.out.println(args.length);
     }
@@ -124,5 +128,10 @@ public class JavaIView extends Application{
     }
     public static void setStart(boolean f){
         isStart = f;        
+    }
+    public static void setCursor(){
+        try{
+           scene.setCursor(new ImageCursor(new Image(new FileInputStream("Cursor.png"))));
+        }catch (FileNotFoundException e){}
     }
 }

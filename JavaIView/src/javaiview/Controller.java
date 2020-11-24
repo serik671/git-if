@@ -2,16 +2,18 @@ package javaiview;
 
 import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
-import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -81,6 +83,7 @@ public class Controller {
         return loading.getStatus()==Status.RUNNING;
     }
     public static void ClearRoot(){
+        JavaIView.scene.setCursor(Cursor.NONE);
         JavaIView.Nods.clear();
         JavaIView.Nods.addAll(JavaIView.root.getChildren());
         Label label = new Label("Для вызода из спящего режима\n\t\tнажмите \"Esc\"");
@@ -125,6 +128,7 @@ public class Controller {
         });
     }
     public static void ReturnRoot(){
+        JavaIView.setCursor();
         JavaIView.root.getChildren().clear();
         JavaIView.root.getChildren().addAll(JavaIView.Nods);
         if(ftImage != null){
@@ -154,4 +158,17 @@ public class Controller {
         };
         timer.start();        
     }*/
+    public static void ImageInClipBoard(){
+        Clipboard clipBoard = Clipboard.getSystemClipboard();
+        ClipboardContent content = new ClipboardContent();
+        content.putImage(JavaIView.image.getImage());
+        clipBoard.setContent(content);
+        Alert msg = new Alert(Alert.AlertType.INFORMATION);
+        msg.setContentText("Изображение скопировано в буфер обмена");
+        msg.show();
+        Timeline time = new Timeline(new KeyFrame(Duration.millis(1000)));
+        time.setCycleCount(2);
+        time.setOnFinished(e->msg.close());
+        time.play();
+    }
 }

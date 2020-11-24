@@ -50,6 +50,7 @@ public class LeftPane extends Pane {
         btnCopyImage = new Button("Копировать изображение");
         btnCopyImage.setDisable(true);
         btnCopyImage.setMinSize(width-20,50);
+        btnCopyImage.setOnMouseClicked(event->Controller.ImageInClipBoard());
         btnSleep = new Button("Спящий режим");
         btnOption = new Button("Настройки");
         btnOption.setOnAction(event->new ModalOption());

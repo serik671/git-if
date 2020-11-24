@@ -7,6 +7,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,11 +20,20 @@ import javafx.stage.StageStyle;
  */
 public class ModalOption extends Stage{
     
-    int width=400,height=200;
+    private int width=400,height=200;
+    private int frameWidth = 5;
     String title = "Options";
     
     public ModalOption(){
         Pane root = new Pane();
+                        
+        //Option frame        
+        Rectangle frame = new Rectangle();
+        frame.setStrokeWidth(frameWidth);
+        frame.getStyleClass().add("Frame");
+        frame.setWidth(width);
+        frame.setFill(Color.TRANSPARENT);
+        root.getChildren().add(frame);
         
         //Option Load Indicator
         Label lName = new Label("Настройки индикатора работы программы");
@@ -64,14 +75,19 @@ public class ModalOption extends Stage{
         UpPane up = new UpPane(this,width,title);
         up.setMinimaze(false);
         up.setMoved(root);
-        vbLoad.setTranslateY(up.getUpHeight());
+        vbLoad.setTranslateY(up.getUpHeight()+frameWidth);
+        vbLoad.setTranslateX(frameWidth);
+        frame.setTranslateY(up.getUpHeight());
+        frame.setHeight(height-up.getUpHeight()-frameWidth);
         root.getChildren().add(up);
+
         
         Scene scene = new Scene(root,width,height);
         
         scene.getStylesheets().add("cssstyle/design.css");
+        scene.setCursor(JavaIView.scene.getCursor());
         setScene(scene);
-        //setHeight(31);
+        //setHeight(31);        
         initStyle(StageStyle.UNDECORATED);
         initModality(Modality.APPLICATION_MODAL);
         setTitle(title);

@@ -121,3 +121,7 @@ and open the template in the editor.
 .rBut:selected .dot{
     -fx-background-color:white;    
 }
+
+.Frame{
+    -fx-stroke:linear-gradient(to right top, #990099, #33ccff);    
+}

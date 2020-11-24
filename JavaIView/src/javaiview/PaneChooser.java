@@ -28,7 +28,7 @@ public class PaneChooser extends Pane{
                 new FileChooser.ExtensionFilter("JPEG", "*.jpeg"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("GIF", "*.gif")
-        );
+        );        
         button1 = new Button("Open");
         button1.setMinSize(64,32);
         button1.setMaxSize(64,32);

@@ -2,26 +2,24 @@ package javaiview;
 import java.io.File;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 /**
  *
  * @author serik
  */
 public class RightPane extends Pane{
-    private int x=1600-40,y=30,
+    private final int x=1600-40,y=30,
                 width = JavaIView.width-x,
                 height = JavaIView.height-y;
     private VBox vb;
     public ListView<PanePreView> list;
     public PaneChooser pane1;
     private File selectFile = new File("");
-    private String pattern = ".*(jpg|png|gif|jpeg)";
+    private final String pattern = ".*(jpg|png|gif|jpeg)";
     public RightPane(){        
         list = new <PanePreView>ListView();
         pane1 = new PaneChooser(width,100);
