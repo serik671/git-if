@@ -1,0 +1,29 @@
+.root{
+    -fx-background-color:linear-gradient(to bottom,#B5D5CA,#E0A9AF);
+}
+.label{
+    -fx-text-fill:#000000;
+    -fx-font-size:15pt;
+}
+.tf{
+    -fx-background-color:#D1EEFC;
+    -fx-text-fill:black;
+    -fx-border-color:#FFFCD6;
+    -fx-border-width:2;
+}
+.button{
+    -fx-background-color:#FFFCD6;
+    -fx-border-color:#B5D5CA;
+    -fx-radiuse:0;
+}
+.button:hover{
+    -fx-background-color:#B5D5CA;
+    -fx-border-color:#FFFCD6;   
+}
+.circle{
+    -fx-fill:#FFFCD6;    
+    -fx-stroke-width:8;
+    -fx-stroke:#D1EEFC;
+    -fx-stroke-dash-array:20;
+}
+
