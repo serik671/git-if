@@ -1,0 +1,86 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19.12.2020, 0:00:54
+    Author     : serik
+*/
+@font-face{
+    font-family:"Moonlight";
+    src:url("moonlight.ttf");
+}
+@font-face{
+    font-family: "RadiantAntique";
+    src:url("RadiantAntique.ttf");
+}
+
+/*for mod*/
+@font-face{
+    font-family:"PF Pixelscript Pro";/*Insert your font name and change in block ".present" on line 85*/
+    src:url("PFPixelscriptPro.ttf");/*Insert your font source*/
+}
+/***/
+
+.root{
+    -fx-background-color:linear-gradient(to top, #ffcc99,#ffcc66);
+}
+.tf{
+    -fx-font-family:"Moonlight";
+    -fx-font-size:25;
+    -fx-border-color:transparent;
+    -fx-background-color:transparent;
+    -fx-text-fill: linear-gradient(to right,#000000,#006600);     
+}
+.labelO{
+    -fx-font-family:Moonlight
+}
+.label{
+    -fx-font-family:RadiantAntique;
+    -fx-font-size:20;
+    -fx-text-fill:#006600;    
+}
+.btn{
+    -fx-background-radius:10;
+    -fx-background-color:#006600;
+    -fx-border-color:#000000;
+    -fx-border-radius:10;
+    -fx-text-fill:#000000;
+}
+.btn:hover{
+    -fx-background-color:radial-gradient(center 50% 50%, radius 80%, #006600, #000000);
+}
+.tfColor{
+    -fx-border-color:#006600;
+}
+.cb{
+    -fx-font-family:RadiantAntique;
+    -fx-text-fill:#006600;    
+}
+.cb .box{
+    -fx-border-color:black;
+    -fx-background-color:rgba(75,75,75,0.2);
+}
+.cb .box:hover{
+    -fx-background-color:transparent;
+    -fx-border-color:#006600;
+}
+
+.colorPicker .label{    
+    -fx-font-family:default;
+    -fx-font-size:10;  
+    -fx-text-fill:#000000;
+}
+.colorPicker{
+    -fx-border-color:#000000;
+    -fx-border-width:2;
+    -fx-background-color:rgba(75,75,75,0.2);
+}
+.colorPicker:hover{
+    -fx-border-color:#006600;
+    -fx-background-color:transparent;
+}
+.present{
+    -fx-font-family:"PF Pixelscript Pro";
+}
